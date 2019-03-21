@@ -146,7 +146,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(233, 157);
             this.textBox1.TabIndex = 11;
- 
             this.textBox1.DoubleClick += new System.EventHandler(this.textBox1_DoubleClick);
             // 
             // textBox2
@@ -164,6 +163,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "发送";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

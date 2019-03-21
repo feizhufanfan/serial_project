@@ -15,6 +15,7 @@ namespace 串口助手
     {
         System.IO.Ports.SerialPort bus_port=new SerialPort();
         SynchronizationContext m_SyncContext = null;
+        System.IO.Stream port_send_stream;
         public Form1()
         {
             InitializeComponent();
@@ -79,6 +80,7 @@ namespace 串口助手
             }
            
             bus_port.Open();
+            port_send_stream = bus_port.BaseStream;
             bus_port.DataReceived += Bus_port_DataReceived;
         }
         bool data_clock=true;
@@ -110,6 +112,21 @@ namespace 串口助手
         private void textBox1_DoubleClick(object sender, EventArgs e)
         {
             textBox1.Text = "";
+        }
+        /***************发送按钮*************************/
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (bus_port.IsOpen) {
+                 string text_box2 = textBox2.Text;
+                 char[] send_data = new char[text_box2.Length];
+                 int count = text_box2.Length;
+                 send_data = text_box2.ToCharArray();
+                 foreach (char cr in send_data) { 
+                    port_send_stream.WriteByte(Convert.ToByte(cr));
+                 }
+            }
+           
+            
         }
     }
 }
